@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Việc làm thực tập | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="viec-lam.html" class="nav-item active">Việc làm</a>
+        <a href="ho-so.html" class="nav-item">Hồ sơ</a>
+        <a href="ung-tuyen.html" class="nav-item">Ứng tuyển</a>
+        <a href="cong-ty.html" class="nav-item">Công ty</a>
+      </nav>
+      <div class="header-right">
+        <a href="thong-bao.html" class="icon-btn"><i class="fas fa-bell"></i><span class="badge">3</span></a>
+        <div class="user-menu">
+          <img src="https://ui-avatars.com/api/?name=SV&background=00b14f&color=fff" class="avatar" alt="">
+          <span class="user-name">Sinh viên</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Việc làm thực tập</h1>
+      <p>Tìm kiếm cơ hội thực tập phù hợp với ngành CNTT HUTECH</p>
+    </div>
+  </div>
+
+  <div class="container sidebar-layout">
+    <aside class="sidebar">
+      <div class="filter-group">
+        <h3>Lĩnh vực</h3>
+        <div id="filter-linhvuc"></div>
+      </div>
+      <div class="filter-group">
+        <h3>Địa điểm</h3>
+        <div id="filter-tinh"></div>
+      </div>
+      <div class="filter-group">
+        <h3>Hình thức</h3>
+        <label><input type="checkbox" value="TAI_CHO" class="filter-hinhthuc"> Tại chỗ</label>
+        <label><input type="checkbox" value="TU_XA" class="filter-hinhthuc"> Từ xa</label>
+        <label><input type="checkbox" value="KET_HOP" class="filter-hinhthuc"> Kết hợp</label>
+      </div>
+      <div class="filter-group">
+        <h3>Hỗ trợ</h3>
+        <label><input type="checkbox" id="filter-luong"> Có hỗ trợ lương</label>
+      </div>
+      <button class="btn btn-primary" style="width:100%" onclick="applyFilter()">Áp dụng</button>
+    </aside>
+
+    <main class="main-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <span id="result-count" style="color:var(--text-muted);font-size:14px;"></span>
+        <select id="sort-select" class="form-control" style="width:auto;" onchange="applyFilter()">
+          <option value="moi">Mới nhất</option>
+          <option value="luotxem">Lượt xem nhiều</option>
+          <option value="han">Sắp hết hạn</option>
+        </select>
+      </div>
+      <div class="job-grid" id="job-list"></div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-bottom"><div class="container">© 2026 HUTECH Intern</div></div>
+  </footer>
+
+  <script src="../css/js/data.js"></script>
+  <script src="../css/js/common.js"></script>
+  <script src="../css/js/viec-lam.js"></script>
+</body>
+</html>

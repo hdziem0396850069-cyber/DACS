@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi tiết tin tuyển dụng | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="viec-lam.html" class="nav-item active">Việc làm</a>
+        <a href="ho-so.html" class="nav-item">Hồ sơ</a>
+        <a href="ung-tuyen.html" class="nav-item">Ứng tuyển</a>
+      </nav>
+      <div class="header-right">
+        <div class="user-menu">
+          <img src="https://ui-avatars.com/api/?name=SV&background=00b14f&color=fff" class="avatar" alt="">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding:24px 16px;" id="detail-container"></div>
+
+  <script src="../css/js/data.js"></script>
+  <script src="../css/js/common.js"></script>
+  <script>
+    const id = +(getQueryParam('id') || 1);
+    const job = TIN_TUYEN_DUNG.find(j => j.MaTin === id) || TIN_TUYEN_DUNG[0];
+
+    document.getElementById('detail-container').innerHTML = `
+      <div class="detail-layout">
+        <div class="detail-main">
+          <div class="detail-header">
+            <img src="${job.LinkLogo}" class="job-logo" style="width:72px;height:72px;" alt="">
+            <div>
+              <h1>${job.TieuDe}</h1>
+              <p class="company-name">${job.TenDoanhNghiep}</p>
+              <div class="job-meta" style="margin-top:8px;">
+                <span class="salary"><i class="fas fa-money-bill-wave"></i> ${job.CoLuong ? job.MucHoTro : 'Không lương'}</span>
+                <span><i class="fas fa-map-marker-alt"></i> ${job.TenTinhThanh}</span>
+                <span><i class="fas fa-clock"></i> ${job.ThoiGianThang} tháng</span>
+                <span><i class="fas fa-laptop-house"></i> ${HINH_THUC[job.HinhThucLamViec]}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h3>Mô tả công việc</h3>
+            <p>Chúng tôi đang tìm kiếm sinh viên thực tập vị trí <strong>${job.TieuDe}</strong> để tham gia các dự án thực tế. Bạn sẽ được mentorship bởi senior và làm việc trong môi trường chuyên nghiệp.</p>
+            <ul>
+              <li>Tham gia phát triển tính năng mới</li>
+              <li>Code review và học hỏi quy trình Agile</li>
+              <li>Làm việc nhóm với các thành viên trong team</li>
+            </ul>
+          </div>
+
+          <div class="detail-section">
+            <h3>Yêu cầu</h3>
+            <ul>
+              <li>Sinh viên năm 3-4 Khoa CNTT HUTECH</li>
+              <li>Nắm vững các kỹ năng: ${job.KyNang.join(', ')}</li>
+              <li>Có tinh thần học hỏi, trách nhiệm</li>
+              <li>GPA từ 2.8 trở lên là lợi thế</li>
+            </ul>
+          </div>
+
+          <div class="detail-section">
+            <h3>Quyền lợi</h3>
+            <ul>
+              <li>${job.CoLuong ? 'Hỗ trợ: ' + job.MucHoTro + '/tháng' : 'Không hỗ trợ lương nhưng có mentorship'}</li>
+              <li>Certificate sau khi hoàn thành</li>
+              <li>Cơ hội trở thành nhân viên chính thức</li>
+              <li>Môi trường trẻ, năng động</li>
+            </ul>
+          </div>
+
+          <div class="detail-section">
+            <h3>Kỹ năng yêu cầu</h3>
+            <div class="skill-tags">
+              ${job.KyNang.map(k => `<span class="skill-tag">${k}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+
+        <aside class="detail-sidebar">
+          <div class="apply-box">
+            <p><i class="fas fa-users"></i> Số lượng: <strong>${job.SoLuong}</strong></p>
+            <p><i class="far fa-calendar-times"></i> Hạn nộp: <strong>${formatDate(job.HanNop)}</strong></p>
+            <p><i class="fas fa-eye"></i> Lượt xem: <strong>${job.LuotXem}</strong></p>
+            <button class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="alert('Mở modal nộp đơn (gọi sp_UngTuyen)')">
+              <i class="fas fa-paper-plane"></i> Ứng tuyển ngay
+            </button>
+            <button class="btn btn-outline" style="width:100%;margin-top:8px;" onclick="toggleSave(this, ${job.MaTin})">
+              <i class="far fa-heart"></i> Lưu tin
+            </button>
+          </div>
+          <div class="company-box">
+            <h4>Về công ty</h4>
+            <img src="${job.LinkLogo}" style="width:48px;height:48px;border-radius:8px;margin:8px 0;" alt="">
+            <p><strong>${job.TenDoanhNghiep}</strong></p>
+            <a href="cong-ty.html" class="link-more">Xem trang công ty →</a>
+          </div>
+        </aside>
+      </div>
+    `;
+  </script>
+  <style>
+    .detail-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
+    .detail-main { background: white; border-radius: var(--radius); border: 1px solid var(--border); padding: 24px; }
+    .detail-header { display: flex; gap: 16px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .detail-header h1 { font-size: 22px; color: var(--secondary); }
+    .company-name { color: var(--text-muted); margin-top: 4px; }
+    .detail-section { margin-bottom: 24px; }
+    .detail-section h3 { font-size: 16px; margin-bottom: 10px; color: var(--secondary); }
+    .detail-section ul { padding-left: 20px; font-size: 14px; line-height: 1.8; }
+    .detail-section p { font-size: 14px; line-height: 1.7; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag { background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 16px; font-size: 13px; }
+    .apply-box, .company-box {
+      background: white; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; margin-bottom: 16px;
+    }
+    .apply-box p { font-size: 14px; margin-bottom: 8px; }
+    .company-box h4 { font-size: 14px; color: var(--text-muted); }
+    @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
+  </style>
+</body>
+</html>

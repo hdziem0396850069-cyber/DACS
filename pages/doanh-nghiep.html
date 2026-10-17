@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dành cho doanh nghiệp | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="#" class="nav-item active">Dashboard</a>
+        <a href="#" class="nav-item">Tin tuyển dụng</a>
+        <a href="#" class="nav-item">Ứng viên</a>
+        <a href="#" class="nav-item">Tin nhắn</a>
+      </nav>
+      <div class="header-right">
+        <div class="user-menu">
+          <img src="https://ui-avatars.com/api/?name=HR&background=1e3a5f&color=fff" class="avatar" alt="">
+          <span class="user-name">HR FPT</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Dashboard doanh nghiệp</h1>
+      <p>Quản lý tin tuyển dụng & ứng viên (vai trò DOANH_NGHIEP)</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding:24px 16px;">
+    <div class="stats-grid" style="margin-bottom:24px;">
+      <div class="stat-card">
+        <i class="fas fa-briefcase"></i>
+        <div><strong>5</strong><span>Tin đang tuyển</span></div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-file-alt"></i>
+        <div><strong>42</strong><span>Đơn ứng tuyển</span></div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-user-check"></i>
+        <div><strong>8</strong><span>Đang phỏng vấn</span></div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-handshake"></i>
+        <div><strong>3</strong><span>Đã nhận offer</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h2 style="font-size:18px;">Tin tuyển dụng của bạn</h2>
+      <button class="btn btn-primary"><i class="fas fa-plus"></i> Đăng tin mới</button>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Tiêu đề</th>
+          <th>Trạng thái</th>
+          <th>Số ứng viên</th>
+          <th>Hạn nộp</th>
+          <th>Lượt xem</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Thực tập sinh Frontend ReactJS</strong></td>
+          <td><span class="badge-status dang-tuyen">Đang tuyển</span></td>
+          <td>18</td>
+          <td>30/11/2026</td>
+          <td>1280</td>
+          <td><a href="#" class="link-more">Quản lý</a></td>
+        </tr>
+        <tr>
+          <td><strong>Thực tập sinh DevOps / Cloud</strong></td>
+          <td><span class="badge-status dang-tuyen">Đang tuyển</span></td>
+          <td>9</td>
+          <td>25/11/2026</td>
+          <td>710</td>
+          <td><a href="#" class="link-more">Quản lý</a></td>
+        </tr>
+        <tr>
+          <td><strong>Intern Backend Node.js</strong></td>
+          <td><span class="badge-status cho-duyet">Chờ duyệt</span></td>
+          <td>0</td>
+          <td>15/12/2026</td>
+          <td>0</td>
+          <td><a href="#" class="link-more">Sửa</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <style>
+    .table {
+      width: 100%; border-collapse: collapse; background: white;
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .table th, .table td {
+      padding: 12px 16px; text-align: left; font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .table th { background: var(--bg); font-weight: 600; color: var(--text-muted); font-size: 13px; }
+    .table tr:last-child td { border-bottom: none; }
+    .table tr:hover td { background: #fafafa; }
+  </style>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="viec-lam.html" class="nav-item">Việc làm</a>
+        <a href="ho-so.html" class="nav-item">Hồ sơ</a>
+        <a href="ung-tuyen.html" class="nav-item">Ứng tuyển</a>
+        <a href="cong-ty.html" class="nav-item">Công ty</a>
+        <a href="admin.html" class="nav-item">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Admin Dashboard</h1>
+      <p>Quản lý dữ liệu theo mô hình DB VaiTro, NguoiDung, TinTuyenDung, DonUngTuyen</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding:24px 16px;">
+    <div class="stats-grid admin-grid">
+      <div class="stat-card">
+        <i class="fas fa-user-graduate"></i>
+        <div><strong>1250</strong><span>Sinh viên</span></div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-building"></i>
+        <div><strong>48</strong><span>Doanh nghiệp</span></div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-briefcase"></i>
+        <div><strong>86</strong><span>Tin đang tuyển</span></div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-file-alt"></i>
+        <div><strong>3200</strong><span>Đơn ứng tuyển</span></div>
+      </div>
+    </div>
+
+    <div class="dashboard-panel">
+      <h3>Quản lý gần đây</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Loại</th>
+            <th>Chi tiết</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Doanh nghiệp</td><td>FPT Software chờ duyệt</td><td><span class="badge-status cho-duyet">Chờ duyệt</span></td></tr>
+          <tr><td>Đơn ứng tuyển</td><td>Đơn #2012 từ sinh viên Nguyễn Văn A</td><td><span class="badge-status da-xem">Đã xem</span></td></tr>
+          <tr><td>Tin tuyển dụng</td><td>Intern AI / Machine Learning</td><td><span class="badge-status dang-tuyen">Đang tuyển</span></td></tr>
+          <tr><td>Thông báo</td><td>Hệ thống đã gửi email xác thực</td><td><span class="badge-status dat">Hoàn tất</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <style>
+    .admin-grid { margin-bottom: 24px; }
+    .dashboard-panel {
+      background: white; border: 1px solid var(--border); border-radius: 20px;
+      padding: 22px; box-shadow: var(--shadow);
+    }
+    .dashboard-panel h3 {
+      margin-bottom: 16px; font-size: 18px;
+    }
+    .data-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+    .data-table th, .data-table td {
+      text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border);
+    }
+    .data-table th { color: #475467; background: #f8fafc; }
+  </style>
+</body>
+</html>

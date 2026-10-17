@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông báo | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="viec-lam.html" class="nav-item">Việc làm</a>
+        <a href="ho-so.html" class="nav-item">Hồ sơ</a>
+        <a href="ung-tuyen.html" class="nav-item">Ứng tuyển</a>
+      </nav>
+      <div class="header-right">
+        <a href="thong-bao.html" class="icon-btn"><i class="fas fa-bell"></i><span class="badge">3</span></a>
+        <div class="user-menu">
+          <img src="https://ui-avatars.com/api/?name=SV&background=00b14f&color=fff" class="avatar" alt="">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Thông báo</h1>
+      <p>Các thông báo từ hệ thống (bảng ThongBao)</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding:24px 16px; max-width:800px;">
+    <div id="tb-list"></div>
+  </div>
+
+  <script src="../css/js/data.js"></script>
+  <script>
+    const icons = {
+      DOI_TRANG_THAI: 'fa-sync-alt',
+      PHONG_VAN: 'fa-calendar-check',
+      TIN_SAP_HET_HAN: 'fa-exclamation-triangle',
+      DON_MOI: 'fa-file-alt'
+    };
+    document.getElementById('tb-list').innerHTML = THONG_BAO.map(tb => `
+      <div class="tb-item ${tb.DaDoc ? '' : 'unread'}">
+        <div class="tb-icon"><i class="fas ${icons[tb.Loai] || 'fa-bell'}"></i></div>
+        <div class="tb-content">
+          <h4>${tb.TieuDe}</h4>
+          <p>${tb.NoiDung}</p>
+          <span class="tb-time">${tb.NgayTao}</span>
+        </div>
+        ${!tb.DaDoc ? '<span class="dot"></span>' : ''}
+      </div>
+    `).join('');
+  </script>
+  <style>
+    .tb-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px;
+      margin-bottom: 10px; position: relative;
+    }
+    .tb-item.unread { background: #f0fdf4; border-color: #bbf7d0; }
+    .tb-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--primary-light); color: var(--primary);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .tb-content h4 { font-size: 15px; margin-bottom: 4px; }
+    .tb-content p { font-size: 14px; color: var(--text-muted); }
+    .tb-time { font-size: 12px; color: #9ca3af; }
+    .dot {
+      position: absolute; top: 16px; right: 16px;
+      width: 8px; height: 8px; background: var(--primary); border-radius: 50%;
+    }
+  </style>
+</body>
+</html>

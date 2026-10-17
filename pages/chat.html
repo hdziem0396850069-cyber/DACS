@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat hỗ trợ | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="viec-lam.html" class="nav-item">Việc làm</a>
+        <a href="ho-so.html" class="nav-item">Hồ sơ</a>
+        <a href="ung-tuyen.html" class="nav-item">Ứng tuyển</a>
+        <a href="cong-ty.html" class="nav-item">Công ty</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Chat hỗ trợ</h1>
+      <p>Liên hệ với đội ngũ hỗ trợ nhanh chóng</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding:24px 16px; max-width: 900px;">
+    <div class="chat-box">
+      <div class="chat-message support"><strong>Hỗ trợ TopCV</strong><br>Chào bạn, bạn cần hỗ trợ gì?</div>
+      <div class="chat-message user">Tôi muốn chỉnh sửa hồ sơ và theo dõi đơn ứng tuyển.</div>
+      <div class="chat-message support">Bạn có thể cập nhật hồ sơ trong mục Hồ sơ và xem tình trạng đơn trong mục Ứng tuyển.</div>
+      <div class="chat-input-wrap">
+        <input type="text" class="form-control" placeholder="Nhập tin nhắn...">
+        <button class="btn btn-primary">Gửi</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .chat-box {
+      background: white; border: 1px solid var(--border); border-radius: 20px;
+      padding: 24px; box-shadow: var(--shadow);
+    }
+    .chat-message {
+      max-width: 75%; padding: 12px 14px; border-radius: 16px; margin-bottom: 12px; font-size: 14px;
+      line-height: 1.6;
+    }
+    .chat-message.support { background: #f3f4f6; color: #1f2937; }
+    .chat-message.user { margin-left: auto; background: var(--primary); color: white; }
+    .chat-input-wrap { display: flex; gap: 10px; margin-top: 20px; }
+  </style>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đơn ứng tuyển | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="viec-lam.html" class="nav-item">Việc làm</a>
+        <a href="ho-so.html" class="nav-item">Hồ sơ</a>
+        <a href="ung-tuyen.html" class="nav-item active">Ứng tuyển</a>
+        <a href="cong-ty.html" class="nav-item">Công ty</a>
+      </nav>
+      <div class="header-right">
+        <a href="thong-bao.html" class="icon-btn"><i class="fas fa-bell"></i><span class="badge">3</span></a>
+        <div class="user-menu">
+          <img src="https://ui-avatars.com/api/?name=SV&background=00b14f&color=fff" class="avatar" alt="">
+          <span class="user-name">Sinh viên</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Đơn ứng tuyển của tôi</h1>
+      <p>Theo dõi trạng thái các đơn đã nộp (bảng DonUngTuyen)</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding:24px 16px;">
+    <div class="tabs" style="margin-bottom:20px;">
+      <button class="tab active" data-status="ALL">Tất cả</button>
+      <button class="tab" data-status="DA_NOP">Đã nộp</button>
+      <button class="tab" data-status="DA_XEM">Đã xem</button>
+      <button class="tab" data-status="PHONG_VAN">Phỏng vấn</button>
+      <button class="tab" data-status="DAT">Đạt</button>
+      <button class="tab" data-status="KHONG_DAT">Không đạt</button>
+    </div>
+    <div class="don-list" id="don-list"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-bottom"><div class="container">© 2026 HUTECH Intern</div></div>
+  </footer>
+
+  <script src="../css/js/data.js"></script>
+  <script src="../css/js/common.js"></script>
+  <script>
+    function renderDons(status = 'ALL') {
+      let dons = [...DON_UNG_TUYEN];
+      if (status !== 'ALL') dons = dons.filter(d => d.TrangThai === status);
+
+      const html = dons.length ? dons.map(d => `
+        <div class="don-card">
+          <div class="don-left">
+            <h3>${d.TieuDe}</h3>
+            <p class="company"><i class="fas fa-building"></i> ${d.TenDoanhNghiep}</p>
+            <p class="time"><i class="far fa-clock"></i> Nộp ngày ${formatDate(d.NgayNop)}</p>
+          </div>
+          <div class="don-right">
+            ${renderStatusBadge(d.TrangThai)}
+            ${d.Diem != null ? `<span class="diem">Điểm: ${d.Diem}/100</span>` : ''}
+            <a href="#" class="btn btn-outline" style="padding:6px 12px;font-size:13px;">Chi tiết</a>
+          </div>
+        </div>
+      `).join('') : '<div class="empty-state"><i class="fas fa-inbox"></i><h3>Chưa có đơn nào</h3></div>';
+
+      document.getElementById('don-list').innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderDons();
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          renderDons(tab.dataset.status);
+        });
+      });
+    });
+  </script>
+  <style>
+    .don-list { display: flex; flex-direction: column; gap: 12px; }
+    .don-card {
+      background: white; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
+      transition: .2s;
+    }
+    .don-card:hover { box-shadow: var(--shadow); border-color: var(--primary); }
+    .don-left h3 { font-size: 16px; color: var(--secondary); margin-bottom: 4px; }
+    .don-left .company, .don-left .time { font-size: 13px; color: var(--text-muted); }
+    .don-right { display: flex; align-items: center; gap: 12px; }
+    .diem { font-size: 13px; font-weight: 600; color: var(--warning); }
+  </style>
+</body>
+</html>

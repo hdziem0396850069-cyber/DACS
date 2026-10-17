@@ -1,0 +1,1239 @@
+/* =============================================================
+   VIỆC LÀM — Job Listing Page Styles (TopCV-inspired)
+   Depends on: style.css (CSS variables + base styles)
+   ============================================================= */
+
+/* ===== KEYFRAMES ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .5; }
+}
+@keyframes badgePop {
+  0%   { transform: scale(0); }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to   { opacity: 1; max-height: 600px; }
+}
+
+/* ============================================================
+   1. HERO SEARCH BANNER  (.vl-hero)
+   ============================================================ */
+.vl-hero {
+  background: linear-gradient(135deg, #006d31 0%, #00b14f 50%, #00c853 100%);
+  padding: 40px 0 44px;
+  position: relative;
+  overflow: hidden;
+}
+.vl-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(255,255,255,.07), transparent),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,255,255,.05), transparent);
+  pointer-events: none;
+}
+.vl-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 40px;
+  background: var(--bg);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+.vl-hero .container { position: relative; z-index: 1; }
+
+/* Breadcrumb */
+.vl-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+}
+.vl-breadcrumb a {
+  color: rgba(255,255,255,.85);
+  transition: color .2s;
+}
+.vl-breadcrumb a:hover { color: #fff; }
+.vl-breadcrumb .separator { font-size: 10px; }
+
+/* Hero title */
+.vl-hero__title {
+  text-align: center;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -.02em;
+}
+.vl-hero__subtitle {
+  text-align: center;
+  color: rgba(255,255,255,.85);
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+/* Search bar */
+.vl-search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border-radius: 999px;
+  padding: 6px 6px 6px 20px;
+  max-width: 860px;
+  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+  gap: 0;
+}
+.vl-search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  min-height: 50px;
+  flex: 1;
+}
+.vl-search-field i {
+  font-size: 16px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.vl-search-field input,
+.vl-search-field select {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+  padding: 10px 0;
+  -webkit-appearance: none;
+}
+.vl-search-field select { cursor: pointer; }
+.vl-search-field--divider {
+  border-left: 1.5px solid var(--border);
+}
+.vl-search-btn {
+  background: linear-gradient(135deg, #00c853, #00b14f);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0 28px;
+  min-height: 44px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 14px rgba(0,177,79,.35);
+  flex-shrink: 0;
+}
+.vl-search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,177,79,.45);
+}
+.vl-search-btn:active { transform: translateY(0); }
+
+/* ============================================================
+   2. FILTER TAGS BAR  (.vl-filter-tags)
+   ============================================================ */
+.vl-filter-tags {
+  padding: 16px 0 0;
+}
+.vl-filter-tags__inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+.vl-filter-tags__inner::-webkit-scrollbar { display: none; }
+
+.vl-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.vl-tag:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.vl-tag.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.vl-tag.active:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: #fff;
+}
+.vl-tag__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  font-size: 10px;
+  line-height: 1;
+  transition: background .2s;
+}
+.vl-tag.active .vl-tag__remove:hover {
+  background: rgba(255,255,255,.5);
+}
+.vl-clear-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--danger);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.vl-clear-filters:hover {
+  background: #fef2f2;
+}
+
+/* ============================================================
+   3. MAIN LAYOUT  (.vl-main-layout)
+   ============================================================ */
+.vl-main-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  padding: 24px 0 48px;
+  align-items: start;
+}
+
+/* ============================================================
+   4. SIDEBAR  (.vl-sidebar)
+   ============================================================ */
+.vl-sidebar {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 0;
+  position: sticky;
+  top: 80px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.vl-sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+.vl-sidebar__header i {
+  color: var(--primary);
+  font-size: 16px;
+}
+
+/* Filter group */
+.vl-filter-group {
+  border-bottom: 1px solid var(--border);
+}
+.vl-filter-group:last-of-type { border-bottom: none; }
+
+.vl-filter-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s;
+}
+.vl-filter-group__header:hover {
+  background: var(--bg);
+}
+.vl-filter-group__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.vl-filter-group__title i {
+  width: 20px;
+  text-align: center;
+  color: var(--primary);
+  font-size: 14px;
+}
+.vl-filter-group__toggle {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: transform .3s ease;
+}
+.vl-filter-group.collapsed .vl-filter-group__toggle {
+  transform: rotate(-90deg);
+}
+
+/* Collapsible body */
+.vl-filter-group__body {
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease, opacity .25s ease;
+  padding: 0 20px 14px;
+  opacity: 1;
+}
+.vl-filter-group.collapsed .vl-filter-group__body {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+
+/* Custom checkboxes */
+.vl-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  transition: color .15s;
+  position: relative;
+}
+.vl-checkbox:hover { color: var(--primary); }
+.vl-checkbox input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  transition: all .15s;
+  background: var(--white);
+}
+.vl-checkbox input[type="checkbox"]:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.vl-checkbox input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.vl-checkbox input[type="checkbox"]:focus-visible {
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+.vl-checkbox__count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+
+/* Search in filter */
+.vl-filter-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: var(--bg);
+  transition: border-color .2s;
+}
+.vl-filter-search:focus-within {
+  border-color: var(--primary);
+  background: var(--white);
+}
+.vl-filter-search i { color: var(--text-muted); font-size: 13px; }
+.vl-filter-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  width: 100%;
+  color: var(--text);
+}
+
+/* Sidebar actions */
+.vl-sidebar__actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.vl-sidebar__actions .btn {
+  flex: 1;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+.vl-btn-reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  flex: 1;
+}
+.vl-btn-reset:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: #fef2f2;
+}
+.vl-btn-apply {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  flex: 1;
+  box-shadow: 0 2px 8px rgba(0,177,79,.2);
+}
+.vl-btn-apply:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 12px rgba(0,177,79,.3);
+}
+
+/* ============================================================
+   5. RESULTS HEADER  (.vl-results-header)
+   ============================================================ */
+.vl-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.vl-results-count {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.vl-results-count strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+.vl-results-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.vl-sort-select {
+  padding: 8px 32px 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.vl-sort-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* View toggle */
+.vl-view-toggle {
+  display: flex;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.vl-view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 34px;
+  border: none;
+  background: var(--white);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all .15s;
+  font-size: 14px;
+}
+.vl-view-btn + .vl-view-btn { border-left: 1px solid var(--border); }
+.vl-view-btn.active,
+.vl-view-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ============================================================
+   6. JOB CARDS  (.vl-job-card)
+   ============================================================ */
+
+/* Grid / List wrapper */
+.vl-job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.vl-job-grid--list {
+  grid-template-columns: 1fr;
+}
+
+/* Card base */
+.vl-job-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: all .25s ease;
+  animation: fadeInUp .5s ease both;
+  cursor: default;
+}
+/* Staggered animation */
+.vl-job-card:nth-child(1)  { animation-delay: .00s; }
+.vl-job-card:nth-child(2)  { animation-delay: .05s; }
+.vl-job-card:nth-child(3)  { animation-delay: .10s; }
+.vl-job-card:nth-child(4)  { animation-delay: .15s; }
+.vl-job-card:nth-child(5)  { animation-delay: .20s; }
+.vl-job-card:nth-child(6)  { animation-delay: .25s; }
+.vl-job-card:nth-child(7)  { animation-delay: .30s; }
+.vl-job-card:nth-child(8)  { animation-delay: .35s; }
+.vl-job-card:nth-child(9)  { animation-delay: .40s; }
+.vl-job-card:nth-child(10) { animation-delay: .45s; }
+.vl-job-card:nth-child(11) { animation-delay: .50s; }
+.vl-job-card:nth-child(12) { animation-delay: .55s; }
+
+.vl-job-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 28px rgba(0,177,79,.12), 0 2px 8px rgba(0,0,0,.06);
+  transform: translateY(-3px);
+}
+.vl-job-card:hover .vl-job-card__accent {
+  opacity: 1;
+}
+
+/* Green top accent line */
+.vl-job-card__accent {
+  position: absolute;
+  top: 0; left: 16px; right: 16px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), #00c853);
+  border-radius: 0 0 3px 3px;
+  opacity: 0;
+  transition: opacity .25s;
+}
+
+/* Badges */
+.vl-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  animation: badgePop .4s ease both;
+  z-index: 2;
+}
+.vl-badge--hot {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(239,68,68,.3);
+}
+.vl-badge--new {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(59,130,246,.3);
+}
+.vl-badge--urgent {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(245,158,11,.3);
+}
+
+/* Card header */
+.vl-job-card__header {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.vl-job-card__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  background: #fafbfc;
+  flex-shrink: 0;
+  transition: border-color .2s;
+}
+.vl-job-card:hover .vl-job-card__logo {
+  border-color: var(--primary-light);
+}
+.vl-job-card__info {
+  flex: 1;
+  min-width: 0;
+}
+.vl-job-card__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--secondary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color .2s;
+  margin-bottom: 3px;
+}
+.vl-job-card__title:hover { color: var(--primary); }
+a.vl-job-card__title { cursor: pointer; }
+.vl-job-card__company {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta tags */
+.vl-job-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.vl-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--bg);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.vl-meta-tag i { font-size: 11px; }
+.vl-meta-tag--salary {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+.vl-meta-tag--location {
+  background: #eff6ff;
+  color: #2563eb;
+}
+.vl-meta-tag--type {
+  background: #fefce8;
+  color: #a16207;
+}
+
+/* Skills */
+.vl-job-card__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.vl-skill-tag {
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.vl-skill-tag:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Footer */
+.vl-job-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.vl-job-card__deadline {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.vl-job-card__deadline i { font-size: 12px; }
+.vl-job-card__deadline--soon {
+  color: var(--danger);
+  font-weight: 600;
+}
+.vl-job-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Save button */
+.vl-btn-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all .2s;
+}
+.vl-btn-save:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: #fef2f2;
+}
+.vl-btn-save.saved {
+  border-color: var(--danger);
+  color: #fff;
+  background: var(--danger);
+}
+.vl-btn-save.saved:hover {
+  background: #dc2626;
+}
+
+/* Apply button */
+.vl-btn-apply-job {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.vl-btn-apply-job:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,177,79,.25);
+}
+.vl-btn-apply-job:active { transform: translateY(0); }
+
+/* ---- List view ---- */
+.vl-job-grid--list .vl-job-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+}
+.vl-job-grid--list .vl-job-card--list,
+.vl-job-card--list {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.vl-job-grid--list .vl-job-card__header {
+  flex: 1;
+  min-width: 0;
+}
+.vl-job-grid--list .vl-job-card__meta {
+  flex-shrink: 0;
+}
+.vl-job-grid--list .vl-job-card__skills { display: none; }
+.vl-job-grid--list .vl-job-card__footer {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   7. PAGINATION  (.vl-pagination)
+   ============================================================ */
+.vl-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 32px 0 8px;
+}
+.vl-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  padding: 0 4px;
+}
+.vl-page-btn:hover:not(.active):not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.vl-page-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0,177,79,.25);
+  cursor: default;
+}
+.vl-page-btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+.vl-page-dots {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 0 4px;
+  user-select: none;
+}
+.vl-page-arrow {
+  font-size: 13px;
+}
+
+/* ============================================================
+   8. SKELETON LOADING  (.vl-skeleton)
+   ============================================================ */
+.vl-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 6px;
+}
+.vl-skeleton-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.vl-skeleton-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+}
+.vl-skeleton-line {
+  height: 14px;
+  border-radius: 4px;
+}
+.vl-skeleton-line--title {
+  height: 18px;
+  width: 80%;
+}
+.vl-skeleton-line--company {
+  width: 50%;
+}
+.vl-skeleton-line--short { width: 30%; }
+.vl-skeleton-line--medium { width: 60%; }
+.vl-skeleton-tags {
+  display: flex;
+  gap: 8px;
+}
+.vl-skeleton-tag {
+  width: 70px;
+  height: 26px;
+  border-radius: 6px;
+}
+.vl-skeleton-card__header {
+  display: flex;
+  gap: 14px;
+}
+.vl-skeleton-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================================
+   9. EMPTY / NO RESULTS  (.vl-empty)
+   ============================================================ */
+.vl-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+.vl-empty__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.vl-empty__icon i {
+  font-size: 32px;
+  color: var(--text-muted);
+  opacity: .5;
+}
+.vl-empty__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.vl-empty__subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 360px;
+  line-height: 1.6;
+}
+.vl-empty__action {
+  margin-top: 20px;
+}
+
+/* ============================================================
+   10. UTILITIES & EXTRAS
+   ============================================================ */
+
+/* Mobile filter toggle button */
+.vl-mobile-filter-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  margin-bottom: 16px;
+}
+.vl-mobile-filter-btn i { color: var(--primary); }
+.vl-mobile-filter-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* Job card applied state */
+.vl-job-card--applied {
+  border-color: var(--primary-light);
+  background: linear-gradient(135deg, #fafffe, #f0faf4);
+}
+.vl-job-card--applied::before {
+  content: "Đã ứng tuyển";
+  position: absolute;
+  bottom: 14px;
+  left: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+/* Tooltip */
+.vl-tooltip {
+  position: relative;
+}
+.vl-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--secondary);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .2s;
+  z-index: 10;
+}
+.vl-tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Scroll to top indicator */
+.vl-results-section {
+  min-height: 400px;
+}
+
+/* ============================================================
+   11. RESPONSIVE
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .vl-main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar becomes collapsible on tablet */
+  .vl-sidebar {
+    position: static;
+    display: none;
+  }
+  .vl-sidebar.vl-sidebar--open {
+    display: block;
+  }
+  .vl-mobile-filter-btn {
+    display: flex;
+  }
+
+  .vl-job-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  /* List view revert on tablet */
+  .vl-job-grid--list .vl-job-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .vl-job-grid--list .vl-job-card__footer {
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: auto;
+  }
+  .vl-job-grid--list .vl-job-card__skills {
+    display: flex;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .vl-hero {
+    padding: 28px 0 36px;
+  }
+  .vl-hero__title {
+    font-size: 22px;
+  }
+  .vl-hero__subtitle {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  /* Search bar stacks vertically */
+  .vl-search-bar {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 14px;
+    gap: 0;
+  }
+  .vl-search-field {
+    width: 100%;
+    padding: 0;
+    min-height: 44px;
+    border-bottom: 1px solid var(--border);
+  }
+  .vl-search-field:last-of-type { border-bottom: none; }
+  .vl-search-field--divider {
+    border-left: none;
+  }
+  .vl-search-btn {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+
+  /* Filter tags scroll */
+  .vl-filter-tags__inner {
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .vl-tag {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* Job grid single column */
+  .vl-job-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Card adjustments */
+  .vl-job-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+  .vl-job-card__logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+  }
+  .vl-job-card__title { font-size: 14px; }
+
+  /* Results header */
+  .vl-results-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .vl-results-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Pagination compact */
+  .vl-pagination {
+    gap: 4px;
+    padding: 24px 0 8px;
+  }
+  .vl-page-btn {
+    min-width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+  /* Empty state */
+  .vl-empty {
+    padding: 48px 16px;
+  }
+  .vl-empty__icon {
+    width: 64px;
+    height: 64px;
+  }
+  .vl-empty__icon i { font-size: 26px; }
+  .vl-empty__title { font-size: 16px; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .vl-hero__title { font-size: 20px; }
+  .vl-job-card__header { gap: 10px; }
+  .vl-job-card__logo {
+    width: 42px;
+    height: 42px;
+  }
+  .vl-meta-tag { font-size: 11px; padding: 3px 8px; }
+  .vl-btn-apply-job { padding: 6px 12px; font-size: 12px; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .vl-hero,
+  .vl-filter-tags,
+  .vl-sidebar,
+  .vl-pagination,
+  .vl-mobile-filter-btn { display: none !important; }
+  .vl-main-layout { grid-template-columns: 1fr; }
+  .vl-job-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}

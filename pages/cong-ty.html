@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Công ty | HUTECH Intern</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="logo-text">HUTECH <strong>Intern</strong></span>
+      </a>
+      <nav class="nav-main">
+        <a href="viec-lam.html" class="nav-item">Việc làm</a>
+        <a href="ho-so.html" class="nav-item">Hồ sơ</a>
+        <a href="ung-tuyen.html" class="nav-item">Ứng tuyển</a>
+        <a href="cong-ty.html" class="nav-item active">Công ty</a>
+      </nav>
+      <div class="header-right">
+        <div class="user-menu">
+          <img src="https://ui-avatars.com/api/?name=SV&background=00b14f&color=fff" class="avatar" alt="">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Doanh nghiệp đối tác</h1>
+      <p>Các công ty đã được duyệt (TrangThaiDuyet = DA_DUYET)</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding:24px 16px;">
+    <div class="company-grid" id="company-list"></div>
+  </div>
+
+  <script src="../css/js/data.js"></script>
+  <script>
+    document.getElementById('company-list').innerHTML = DOANH_NGHIEP.map(dn => {
+      const tinh = TINH_THANH.find(t => t.MaTinhThanh === dn.MaTinhThanh);
+      const soTin = TIN_TUYEN_DUNG.filter(t => t.MaDoanhNghiep === dn.MaDoanhNghiep).length;
+      return `
+        <div class="company-card">
+          <img src="${dn.LinkLogo}" class="company-logo" alt="">
+          <h3>${dn.TenDoanhNghiep}</h3>
+          <p><i class="fas fa-map-marker-alt"></i> ${tinh ? tinh.TenTinhThanh : ''}</p>
+          <p><i class="fas fa-users"></i> Quy mô: ${dn.QuyMo}</p>
+          <p class="so-tin">${soTin} tin đang tuyển</p>
+          <a href="viec-lam.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:12px;">Xem việc làm</a>
+        </div>
+      `;
+    }).join('');
+  </script>
+  <style>
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .company-card {
+      background: white; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; text-align: center; transition: .2s;
+    }
+    .company-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary); }
+    .company-logo {
+      width: 64px; height: 64px; border-radius: 12px; margin: 0 auto 12px;
+      border: 1px solid var(--border);
+    }
+    .company-card h3 { font-size: 16px; margin-bottom: 8px; color: var(--secondary); }
+    .company-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+    .so-tin { color: var(--primary) !important; font-weight: 600; margin-top: 8px !important; }
+  </style>
+</body>
+</html>

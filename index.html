@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUTECH IT Intern - Tìm việc làm nhanh</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <div class="brand-logo"></div>
+        <div class="brand-sub">HUTECH IT Intern</div>
+      </div>
+
+      <nav class="nav-main" aria-label="Menu chính">
+        <a href="pages/viec-lam.html" class="nav-item active">Việc làm <span>↓</span></a>
+        <a href="pages/cv.html" class="nav-item">Tạo CV</a>
+        <a href="pages/cong-ty.html" class="nav-item">Công ty</a>
+        <a href="#" class="nav-item">Cẩm nang nghề nghiệp</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="auth-logged-out">
+          <button class="btn btn-auth btn-outline" data-auth="login">Đăng nhập</button>
+          <button class="btn btn-auth btn-primary" data-auth="register">Đăng ký</button>
+        </div>
+
+        <div class="auth-logged-in hidden">
+          <a href="pages/thong-bao.html" class="icon-btn" title="Thông báo">
+            <i class="fas fa-bell"></i>
+            <span class="badge">6</span>
+          </a>
+
+          <div class="user-menu" id="userMenu">
+            <div class="user-preivew">
+              <img src="https://ui-avatars.com/api/?name=Sinh+Vi%C3%AAn&background=00b14f&color=fff" alt="avatar" class="avatar" id="userAvatar">
+              <span class="user-name" id="userDisplayName">Sinh viên</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <div class="dropdown">
+              <a href="pages/ho-so.html"><i class="fas fa-user"></i> Tài khoản sinh viên</a>
+              <a href="pages/doanh-nghiep.html"><i class="fas fa-building"></i> Nhà tuyển dụng</a>
+              <a href="pages/admin.html"><i class="fas fa-shield-alt"></i> Admin</a>
+              <hr>
+              <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="pages/doanh-nghiep.html" class="btn-pro">HUTECH IT Pro</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-shell">
+      <div class="hero-row">
+        <div class="hero-copy">
+          <h1>Tìm việc làm nhanh, việc làm nổi bật trên toàn quốc</h1>
+          <p>Tiếp cận hơn 10.000+ tin tuyển dụng mới mỗi ngày từ các doanh nghiệp uy tín tại Việt Nam</p>
+        </div>
+        <div class="hero-side">
+          <div class="mini-portrait">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Nhân sự">
+          </div>
+        </div>
+      </div>
+
+      <form class="search-box" action="pages/viec-lam.html" method="get">
+        <div class="search-field search-main category-picker">
+          <i class="fas fa-bars"></i>
+          <button type="button" class="category-trigger" id="categoryTrigger">
+            <span id="selectedCategory">Danh mục nghề</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="category-menu" id="categoryMenu">
+            <button type="button" class="category-option active" data-value="Tất cả">Tất cả</button>
+            <button type="button" class="category-option" data-value="Frontend Developer">Frontend Developer</button>
+            <button type="button" class="category-option" data-value="Backend Developer">Backend Developer</button>
+            <button type="button" class="category-option" data-value="Fullstack Developer">Fullstack Developer</button>
+            <button type="button" class="category-option" data-value="Mobile Developer">Mobile Developer</button>
+            <button type="button" class="category-option" data-value="Data Analyst">Data Analyst</button>
+            <button type="button" class="category-option" data-value="AI Engineer">AI Engineer</button>
+            <button type="button" class="category-option" data-value="QA Tester">QA Tester</button>
+            <button type="button" class="category-option" data-value="DevOps Engineer">DevOps Engineer</button>
+            <button type="button" class="category-option" data-value="Cyber Security">Cyber Security</button>
+          </div>
+          <input type="hidden" name="linhvuc" id="categoryInput" value="">
+        </div>
+
+        <div class="search-field location">
+          <i class="fas fa-map-marker-alt"></i>
+          <select name="tinh">
+            <option value="">Địa điểm</option>
+            <option value="1">TP. Hồ Chí Minh</option>
+            <option value="2">Hà Nội</option>
+            <option value="3">Đà Nẵng</option>
+            <option value="4">Cần Thơ</option>
+            <option value="5">Bình Dương</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-search"><i class="fas fa-search"></i> Tìm kiếm</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section categories-section">
+    <div class="container grid-2">
+      <div class="category-list">
+        <ul id="linh-vuc-list"></ul>
+        <div class="pager">
+          <span>1/5</span>
+          <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
+          <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div class="promo-banner">
+        <div class="promo-person">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1000&q=80" alt="Tuyển dụng">
+        </div>
+        <div class="promo-content">
+          <h2>Đã đến lúc nâng tầm thu nhập</h2>
+          <p>Mở ra hàng ngàn cơ hội việc làm cùng FinCareer </p>
+          <div class="promo-benefits">
+            <span><i class="fas fa-user-check"></i> Phỏng vấn 1-1</span>
+            <span><i class="fas fa-briefcase"></i> Cơ hội phát triển</span>
+            <span><i class="fas fa-shield-alt"></i> Cẩn thận</span>
+          </div>
+          <a href="pages/viec-lam.html" class="btn btn-primary btn-large">Khám phá ngay</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section role-portal">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Hệ thống theo vai trò trong cơ sở dữ liệu</h2>
+        <p>Phân quyền theo mô hình: Sinh viên, Doanh nghiệp và Admin</p>
+      </div>
+
+      <div class="portal-grid">
+        <article class="portal-card portal-student">
+          <div class="portal-icon"><i class="fas fa-user-graduate"></i></div>
+          <h3>Sinh viên</h3>
+          <p>Quản lý hồ sơ, CV, ứng tuyển, theo dõi trạng thái đơn và lưu tin yêu thích.</p>
+          <a href="pages/ho-so.html" class="portal-btn">Vào hồ sơ</a>
+        </article>
+
+        <article class="portal-card portal-company">
+          <div class="portal-icon"><i class="fas fa-building"></i></div>
+          <h3>Nhà tuyển dụng</h3>
+          <p>Đăng tin tuyển dụng, quản lý đơn ứng tuyển, phỏng vấn và đánh giá thực tập.</p>
+          <a href="pages/dang-tin.html" class="portal-btn">Đăng tin</a>
+        </article>
+
+        <article class="portal-card portal-admin">
+          <div class="portal-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Admin</h3>
+          <p>Duyệt doanh nghiệp, quản lý tin tuyển dụng, thống kê người dùng và báo cáo hệ thống.</p>
+          <a href="pages/admin.html" class="portal-btn">Dashboard</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section jobs-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Việc làm mới cập nhật</h2>
+        <div class="tabs">
+          <button class="tab active" data-tab="noi-bat">Nổi bật</button>
+          <button class="tab" data-tab="moi-nhat">Mới nhất</button>
+          <button class="tab" data-tab="luong-cao">Có hỗ trợ</button>
+        </div>
+        <a href="pages/viec-lam.html" class="link-more">Xem tất cả <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="filter-chips">
+        <button class="chip active">Tất cả</button>
+        <button class="chip">TP. Hồ Chí Minh</button>
+        <button class="chip">Hà Nội</button>
+        <button class="chip">Đà Nẵng</button>
+        <button class="chip">Remote</button>
+      </div>
+
+      <div class="job-grid" id="job-list"></div>
+    </div>
+  </section>
+
+  <section class="section stats-section">
+    <div class="container stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-user-graduate"></i>
+        <div>
+          <strong id="stat-sv">0</strong>
+          <span>Sinh viên</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-building"></i>
+        <div>
+          <strong id="stat-dn">0</strong>
+          <span>Doanh nghiệp</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-briefcase"></i>
+        <div>
+          <strong id="stat-tin">0</strong>
+          <span>Tin đang tuyển</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-check-circle"></i>
+        <div>
+          <strong id="stat-dat">0</strong>
+          <span>Sinh viên đã có nơi TT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+          <span class="logo-text">HUTECH <strong>Intern</strong></span>
+        </div>
+        <p>Hệ thống hỗ trợ tìm kiếm và ứng tuyển thực tập dành cho sinh viên Khoa CNTT - HUTECH</p>
+      </div>
+      <div>
+        <h4>Dành cho sinh viên</h4>
+        <ul>
+          <li><a href="pages/viec-lam.html">Tìm việc thực tập</a></li>
+          <li><a href="pages/ho-so.html">Tạo hồ sơ</a></li>
+          <li><a href="pages/cv.html">Quản lý CV</a></li>
+          <li><a href="pages/ung-tuyen.html">Theo dõi đơn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dành cho doanh nghiệp</h4>
+        <ul>
+          <li><a href="pages/doanh-nghiep.html">Đăng tin tuyển dụng</a></li>
+          <li><a href="#">Tìm ứng viên</a></li>
+          <li><a href="#">Quản lý đơn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <p><i class="fas fa-envelope"></i> intern@hutech.edu.vn</p>
+        <p><i class="fas fa-map-marker-alt"></i> Khoa CNTT - HUTECH</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">© 2026 HUTECH Intern - Đồ án chuyên ngành CNTT</div>
+    </div>
+  </footer>
+
+  <div class="floating-rail">
+    <button class="rail-item active" data-page="pages/yeu-thich.html" title="Tin đã lưu"><i class="fas fa-heart"></i></button>
+    <button class="rail-item" data-page="pages/dang-tin.html" title="Đăng tin"><i class="fas fa-user-plus"></i></button>
+    <button class="rail-item" data-page="pages/chat.html" title="Chat hỗ trợ"><i class="fas fa-comments"></i></button>
+    <button class="rail-item" data-page="pages/ho-tro.html" title="Hỗ trợ"><i class="fas fa-headset"></i></button>
+  </div>
+
+  <div class="auth-modal hidden" id="authModal">
+    <div class="auth-box">
+      <button class="auth-close" aria-label="Đóng" id="closeAuthModal"><i class="fas fa-times"></i></button>
+      <div class="auth-header">
+        <h3 id="authTitle">Đăng nhập</h3>
+        <p>Chào mừng bạn quay lại</p>
+      </div>
+
+      <div class="role-switch">
+        <button class="role-option active" data-role="student">Sinh viên</button>
+        <button class="role-option" data-role="employer">Nhà tuyển dụng</button>
+        <button class="role-option" data-role="admin">Admin</button>
+      </div>
+
+      <form id="authForm">
+        <div class="form-group hidden" id="nameGroup">
+          <label for="fullName">Họ và tên</label>
+          <input id="fullName" name="name" class="form-control" placeholder="Nhập tên của bạn" />
+        </div>
+
+        <div class="form-group">
+          <label for="userEmail">Email</label>
+          <input id="userEmail" name="email" type="email" class="form-control" placeholder="example@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="userPassword">Mật khẩu</label>
+          <input id="userPassword" name="password" type="password" class="form-control" placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary auth-submit" id="authSubmitBtn">Đăng nhập</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="css/js/data.js"></script>
+  <script src="css/js/common.js"></script>
+  <script src="css/js/home.js"></script>
+  <script>
+    const AUTH_KEY = 'HUTECH IT_user';
+    const ROLE_TEXT = {
+      student: 'Sinh viên',
+      employer: 'Nhà tuyển dụng',
+      admin: 'Admin'
+    };
+
+    const authModal = document.getElementById('authModal');
+    const authForm = document.getElementById('authForm');
+    const authTitle = document.getElementById('authTitle');
+    const authSubmitBtn = document.getElementById('authSubmitBtn');
+    const nameGroup = document.getElementById('nameGroup');
+    const roleButtons = document.querySelectorAll('.role-option');
+    const userMenu = document.getElementById('userMenu');
+
+    function getAuthUser() {
+      try {
+        return JSON.parse(localStorage.getItem(AUTH_KEY));
+      } catch {
+        return null;
+      }
+    }
+
+    function saveAuthUser(user) {
+      localStorage.setItem(AUTH_KEY, JSON.stringify(user));
+    }
+
+    function logoutUser() {
+      localStorage.removeItem(AUTH_KEY);
+      renderAuthUI();
+    }
+
+    function openAuthModal(mode = 'login', role = 'student') {
+      authModal.classList.remove('hidden');
+      const isRegister = mode === 'register';
+      authTitle.textContent = isRegister ? 'Đăng ký tài khoản' : 'Đăng nhập';
+      authSubmitBtn.textContent = isRegister ? 'Đăng ký' : 'Đăng nhập';
+      nameGroup.classList.toggle('hidden', !isRegister);
+      roleButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.role === role));
+      authForm.dataset.mode = mode;
+      authForm.dataset.role = role;
+      const nameInput = document.getElementById('fullName');
+      if (nameInput && !isRegister) nameInput.value = '';
+    }
+
+    function closeAuthModal() {
+      authModal.classList.add('hidden');
+    }
+
+    function applyUserRoleUI(user) {
+      const displayName = document.getElementById('userDisplayName');
+      const avatar = document.getElementById('userAvatar');
+      const roleLabel = ROLE_TEXT[user.role] || 'Sinh viên';
+      displayName.textContent = user.name || roleLabel;
+      avatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || roleLabel)}&background=00b14f&color=fff`;
+    }
+
+    function renderAuthUI() {
+      const user = getAuthUser();
+      const loggedInEls = document.querySelectorAll('.auth-logged-in');
+      const loggedOutEls = document.querySelectorAll('.auth-logged-out');
+      if (user) {
+        loggedInEls.forEach(el => el.classList.remove('hidden'));
+        loggedOutEls.forEach(el => el.classList.add('hidden'));
+        applyUserRoleUI(user);
+      } else {
+        loggedInEls.forEach(el => el.classList.add('hidden'));
+        loggedOutEls.forEach(el => el.classList.remove('hidden'));
+      }
+    }
+
+    document.querySelectorAll('[data-auth]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        openAuthModal(btn.dataset.auth, document.querySelector('.role-option.active')?.dataset.role || 'student');
+      });
+    });
+
+    document.querySelectorAll('.rail-item').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetPage = btn.dataset.page;
+        const user = getAuthUser();
+
+        if ((targetPage === 'pages/dang-tin.html' || targetPage === 'pages/chat.html') && !user) {
+          openAuthModal(targetPage === 'pages/dang-tin.html' ? 'register' : 'login', targetPage === 'pages/dang-tin.html' ? 'employer' : 'student');
+          return;
+        }
+
+        if (targetPage) {
+          window.location.href = targetPage;
+        }
+      });
+    });
+
+    roleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        roleButtons.forEach(btn => btn.classList.toggle('active', btn === button));
+        authForm.dataset.role = button.dataset.role;
+      });
+    });
+
+    document.getElementById('closeAuthModal').addEventListener('click', closeAuthModal);
+    authModal.addEventListener('click', (event) => {
+      if (event.target === authModal) closeAuthModal();
+    });
+
+    authForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(authForm);
+      const mode = authForm.dataset.mode || 'login';
+      const role = authForm.dataset.role || 'student';
+      const payload = {
+        name: formData.get('name') || ROLE_TEXT[role],
+        email: formData.get('email'),
+        password: formData.get('password'),
+        role
+      };
+
+      if (mode === 'register') {
+        saveAuthUser(payload);
+        renderAuthUI();
+        closeAuthModal();
+      } else {
+        const saved = getAuthUser();
+        if (saved) {
+          saveAuthUser({ ...saved, role });
+          renderAuthUI();
+          closeAuthModal();
+        } else {
+          saveAuthUser(payload);
+          renderAuthUI();
+          closeAuthModal();
+        }
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', (event) => {
+      event.preventDefault();
+      logoutUser();
+    });
+
+    const categoryPicker = document.querySelector('.category-picker');
+    const categoryTrigger = document.getElementById('categoryTrigger');
+    const categoryInput = document.getElementById('categoryInput');
+    const selectedCategory = document.getElementById('selectedCategory');
+
+    function applyCategory(value) {
+      const safeValue = value || 'Tất cả';
+      selectedCategory.textContent = safeValue;
+      categoryInput.value = safeValue === 'Tất cả' ? '' : safeValue;
+      document.querySelectorAll('.category-option').forEach(option => {
+        option.classList.toggle('active', option.dataset.value === safeValue);
+      });
+    }
+
+    categoryTrigger?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (categoryPicker) categoryPicker.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.category-option').forEach((option) => {
+      option.addEventListener('click', () => {
+        applyCategory(option.dataset.value);
+        if (categoryPicker) categoryPicker.classList.remove('open');
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (categoryPicker && !categoryPicker.contains(event.target)) {
+        categoryPicker.classList.remove('open');
+      }
+      if (userMenu && !userMenu.contains(event.target)) {
+        userMenu.classList.remove('open');
+      }
+    });
+
+    userMenu?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      userMenu.classList.toggle('open');
+    });
+
+    applyCategory('Tất cả');
+    renderAuthUI();
+  </script>
+</body>
+</html>
